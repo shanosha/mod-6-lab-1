@@ -8,12 +8,17 @@ export class DigitalProduct extends Product {
         this.fileSize = fileSize;
     }
 
+    displayDetails(): string {
+        let str = `${super.displayDetails()}" The filesize is ${this.formattedFilesize}.`;
+        return str;
+    }
+
     getPriceWithTax(): number {
         let total = this.price;
         return total;
     }
 
-    get formattedWeight(): string {
+    get formattedFilesize(): string {
         return `${this.fileSize} megabytes`;
     }
 }

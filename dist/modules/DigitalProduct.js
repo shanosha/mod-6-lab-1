@@ -5,11 +5,15 @@ export class DigitalProduct extends Product {
         super(sku, name, price);
         this.fileSize = fileSize;
     }
+    displayDetails() {
+        let str = `${super.displayDetails()}" The filesize is ' ${this.formattedFilesize}.`;
+        return str;
+    }
     getPriceWithTax() {
         let total = this.price;
         return total;
     }
-    get formattedWeight() {
+    get formattedFilesize() {
         return `${this.fileSize} megabytes`;
     }
 }

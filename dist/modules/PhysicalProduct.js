@@ -7,6 +7,10 @@ export class PhysicalProduct extends Product {
         this.weight = weight;
         this.discount = discount;
     }
+    displayDetails() {
+        let str = `${super.displayDetails()}" The weight is ${this.formattedWeight}.`;
+        return str;
+    }
     getPriceWithTax() {
         let total = Math.round((this.price + (this.price * (10 / 100))) * 100) / 100;
         return total;

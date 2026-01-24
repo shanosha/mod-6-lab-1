@@ -14,6 +14,11 @@ export class PhysicalProduct extends Product implements DiscountableProduct {
         this.discount = discount;
     }
 
+    displayDetails(): string {
+        let str = `${super.displayDetails()} The weight is ${this.formattedWeight}.`;
+        return str;
+    }
+
     getPriceWithTax(): number {
         let total = Math.round((this.price + (this.price * (10/100)))*100)/100;
         return total;
