@@ -1,4 +1,5 @@
 import {Product} from './Product.js'
+
 interface DiscountableProduct {
     discount: number;
     applyDiscount(): number;
