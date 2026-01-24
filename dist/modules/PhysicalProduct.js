@@ -8,7 +8,7 @@ export class PhysicalProduct extends Product {
         this.discount = discount;
     }
     displayDetails() {
-        let str = `${super.displayDetails()}" The weight is ${this.formattedWeight}.`;
+        let str = `${super.displayDetails()} The weight is ${this.formattedWeight}.`;
         return str;
     }
     getPriceWithTax() {

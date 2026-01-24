@@ -6,7 +6,7 @@ export class DigitalProduct extends Product {
         this.fileSize = fileSize;
     }
     displayDetails() {
-        let str = `${super.displayDetails()}" The filesize is ' ${this.formattedFilesize}.`;
+        let str = `${super.displayDetails()}" The filesize is ${this.formattedFilesize}.`;
         return str;
     }
     getPriceWithTax() {
