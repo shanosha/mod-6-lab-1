@@ -7,8 +7,8 @@ export class Product {
         this.name = name;
         this.price = price;
     }
-    displayDetails() {
-        let str = `The product ${this.name} with SKU "${this.sku}" costs $${this.price}.`;
+    displayDetails(discountMsg = "") {
+        let str = `The product ${this.name} with SKU "${this.sku}" price ${discountMsg}is ${this.price.toLocaleString("en-US", { style: "currency", currency: "USD" })}.`;
         return str;
     }
     getPriceWithTax(tax = 0) {

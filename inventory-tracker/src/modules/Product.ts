@@ -9,8 +9,8 @@ export class Product {
         this.price = price;
     }
 
-    displayDetails(): string {
-        let str = `The product ${this.name} with SKU "${this.sku}" costs $${this.price}.`;
+    displayDetails(discountMsg = ""): string {
+        let str = `The product ${this.name} with SKU "${this.sku}" price ${discountMsg}is ${this.price.toLocaleString("en-US",{style:"currency",currency:"USD"})}.`;
         return str;
     }
 

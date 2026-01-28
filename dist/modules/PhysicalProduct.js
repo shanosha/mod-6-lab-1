@@ -1,14 +1,15 @@
 import { Product } from './Product.js';
 export class PhysicalProduct extends Product {
     weight;
-    discount;
-    constructor(sku, name, price, weight, discount = 0) {
+    discount = 0;
+    discountApplied = false;
+    constructor(sku, name, price, weight) {
         super(sku, name, price);
         this.weight = weight;
-        this.discount = discount;
     }
     displayDetails() {
-        let str = `${super.displayDetails()} The weight is ${this.formattedWeight}.`;
+        let discoutnMsg = this.discountApplied ? `with discount of ${this.discount}% ` : "";
+        let str = `${super.displayDetails(discoutnMsg)}\nThe weight is ${this.formattedWeight}.`;
         return str;
     }
     getPriceWithTax() {
@@ -16,10 +17,11 @@ export class PhysicalProduct extends Product {
         return total;
     }
     get formattedWeight() {
-        return `${(this.weight * 0.45359237).toFixed(2)} kg`;
+        return `${(this.weight * 0.45359237).toFixed(2)} kg, ${this.weight} LBS`;
     }
-    applyDiscount() {
-        let total = Math.round((this.price - (this.price * (this.discount / 100))) * 100) / 100;
-        return total;
+    applyDiscount(discount = 0) {
+        this.discount = discount;
+        this.price = Math.round((this.price - (this.price * (discount / 100))) * 100) / 100;
+        return this;
     }
 }

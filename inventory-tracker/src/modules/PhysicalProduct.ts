@@ -2,21 +2,22 @@ import {Product} from './Product.js'
 
 interface DiscountableProduct {
     discount: number;
-    applyDiscount(): number;
+    applyDiscount(): PhysicalProduct;
 }
 
 export class PhysicalProduct extends Product implements DiscountableProduct {
     public weight: number;
-    public discount: number;
+    public discount: number = 0;
+    public discountApplied: boolean = false;
 
-    constructor(sku: string, name: string, price: number, weight: number, discount: number = 0){
+    constructor(sku: string, name: string, price: number, weight: number){
         super(sku,name,price);
         this.weight = weight;
-        this.discount = discount;
     }
 
     displayDetails(): string {
-        let str = `${super.displayDetails()}\nThe weight is ${this.formattedWeight}.`;
+        let discoutnMsg = this.discountApplied ? `with discount of ${this.discount}% ` : "";
+        let str = `${super.displayDetails(discoutnMsg)}\nThe weight is ${this.formattedWeight}.`;
         return str;
     }
 
@@ -26,11 +27,13 @@ export class PhysicalProduct extends Product implements DiscountableProduct {
     }
 
     get formattedWeight(): string {
-        return `${(this.weight * 0.45359237).toFixed(2)} kg`;
+        return `${(this.weight * 0.45359237).toFixed(2)} kg, ${this.weight} LBS`;
     }
 
-    applyDiscount(): number {
-        let total = Math.round((this.price - (this.price * (this.discount/100)))*100)/100;
-        return total;
+    applyDiscount(discount: number = 0): PhysicalProduct {
+        this.discount = discount;
+        this.price = Math.round((this.price - (this.price * (discount/100)))*100)/100;
+        return this;
     }
+    
 }
