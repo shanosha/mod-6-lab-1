@@ -9,7 +9,7 @@ export class DigitalProduct extends Product {
     }
 
     displayDetails(): string {
-        let str = `${super.displayDetails()}" The filesize is ${this.formattedFilesize}.`;
+        let str = `${super.displayDetails()}"\nThe filesize is ${this.formattedFilesize}.`;
         return str;
     }
 

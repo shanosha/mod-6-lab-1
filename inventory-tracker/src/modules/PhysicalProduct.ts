@@ -16,7 +16,7 @@ export class PhysicalProduct extends Product implements DiscountableProduct {
     }
 
     displayDetails(): string {
-        let str = `${super.displayDetails()} The weight is ${this.formattedWeight}.`;
+        let str = `${super.displayDetails()}\nThe weight is ${this.formattedWeight}.`;
         return str;
     }
 
